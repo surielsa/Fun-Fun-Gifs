@@ -1,6 +1,10 @@
 body {
   font: 18px arial, sans-serif;
   background: #eee;
+  /* background-image: url(../Fun-Fun-Gifs/TRH_Logo.png);
+  background-repeat: no-repeat;
+  background-size: cover; */
+
 }
 
 #animals {
@@ -38,7 +42,7 @@ input[type="submit"] {
   font-size: 18px;
   color: #fff;
   cursor: pointer;
-  background: #659a98;
+  background: #6f7473;
   border: 0;
   border-radius: 5px;
   box-shadow: 2px 2px 3px #bbb;

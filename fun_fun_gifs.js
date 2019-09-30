@@ -1,13 +1,8 @@
+$(document).ready(function () {
 
-// CHANGE ALL ANIMAL calls to the other gifs!!!
+  var housewives = [
+    "The Real Housewives of Orange County", "The Real Housewives of New York City", "The Real Housewives of Atlanta", "The Real Housewives of New Jersey", "The Real Housewives of D.C.", "The Real Housewives of Beverly Hills", "The Real Housewives of Miami", "The Real Housewives of Potomac", "The Real Housewives of Dallas"
 
-$(document).ready(function() {
-
-  var animals = [
-    "dog", "cat", "rabbit", "hamster", "skunk", "goldfish",
-    "bird", "ferret", "turtle", "sugar glider", "chinchilla",
-    "hedgehog", "hermit crab", "gerbil", "pygmy goat", "chicken",
-    "capybara", "teacup pig", "serval", "salamander", "frog"
   ];
 
   // function to make buttons and add to page
@@ -24,9 +19,9 @@ $(document).ready(function() {
 
   }
 
-  $(document).on("click", ".animal-button", function() {
-    $("#animals").empty();
-    $(".animal-button").removeClass("active");
+  $(document).on("click", ".housewife-button", function () {
+    $("#housewives").empty();
+    $(".housewife-button").removeClass("active");
     $(this).addClass("active");
 
     var type = $(this).attr("data-type");
@@ -36,11 +31,11 @@ $(document).ready(function() {
       url: queryURL,
       method: "GET"
     })
-      .then(function(response) {
+      .then(function (response) {
         var results = response.data;
 
         for (var i = 0; i < results.length; i++) {
-          var animalDiv = $("<div class=\"animal-item\">");
+          var housewifeDiv = $("<div class=\"housewife-item\">");
 
           var rating = results[i].rating;
 
@@ -49,22 +44,22 @@ $(document).ready(function() {
           var animated = results[i].images.fixed_height.url;
           var still = results[i].images.fixed_height_still.url;
 
-          var animalImage = $("<img>");
-          animalImage.attr("src", still);
-          animalImage.attr("data-still", still);
-          animalImage.attr("data-animate", animated);
-          animalImage.attr("data-state", "still");
-          animalImage.addClass("animal-image");
+          var housewifeImage = $("<img>");
+          housewifeImage.attr("src", still);
+          housewifeImage.attr("data-still", still);
+          housewifeImage.attr("data-animate", animated);
+          housewifeImage.attr("data-state", "still");
+          housewifeImage.addClass("housewife-image");
 
-          animalDiv.append(p);
-          animalDiv.append(animalImage);
+          housewifeDiv.append(p);
+          housewifeDiv.append(housewifeImage);
 
-          $("#animals").append(animalDiv);
+          $("#housewives").append(housewifeDiv);
         }
       });
   });
 
-  $(document).on("click", ".animal-image", function() {
+  $(document).on("click", ".housewife-image", function () {
 
     var state = $(this).attr("data-state");
 
@@ -78,17 +73,17 @@ $(document).ready(function() {
     }
   });
 
-  $("#add-animal").on("click", function(event) {
+  $("#add-housewife").on("click", function (event) {
     event.preventDefault();
-    var newAnimal = $("input").eq(0).val();
+    var newhousewife = $("input").eq(0).val();
 
-    if (newAnimal.length > 2) {
-      animals.push(newAnimal);
+    if (newhousewife.length > 2) {
+      housewives.push(newhousewife);
     }
 
-    populateButtons(animals, "animal-button", "#animal-buttons");
+    populateButtons(housewives, "housewife-button", "#housewife-buttons");
 
   });
 
-  populateButtons(animals, "animal-button", "#animal-buttons");
+  populateButtons(housewives, "housewife-button", "#housewife-buttons");
 });
