@@ -25,7 +25,7 @@ $(document).ready(function () {
     $(this).addClass("active");
 
     var type = $(this).attr("data-type");
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + type + "&api_key=dc6zaTOxFJmzC&limit=10";
+    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + type + "&api_key=dc6zaTOxFJmzC&limit=5";
 
     $.ajax({
       url: queryURL,
@@ -59,10 +59,14 @@ $(document).ready(function () {
       });
   });
 
+  //  When the user clicks one of the still GIPHY images, and it animates. When the user clicks the gif again, it stops playing.
+
   $(document).on("click", ".housewife-image", function () {
 
+    // gets the current state of the clicked gif 
     var state = $(this).attr("data-state");
 
+    // according to the current state gifs toggle between animate and still
     if (state === "still") {
       $(this).attr("src", $(this).attr("data-animate"));
       $(this).attr("data-state", "animate");
@@ -76,6 +80,8 @@ $(document).ready(function () {
   $("#add-housewife").on("click", function (event) {
     event.preventDefault();
     var newhousewife = $("input").eq(0).val();
+
+    // HERE is where you add the code for adding an additional gifs without deteling the previous ones.
 
     if (newhousewife.length > 2) {
       housewives.push(newhousewife);
