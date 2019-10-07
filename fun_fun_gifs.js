@@ -5,7 +5,7 @@ $(document).ready(function () {
 
   ];
 
-  // function to make buttons and add to page
+  // function to make buttons from input and add to page
   function populateButtons(arrayToUse, classToAdd, areaToAddTo) {
     $(areaToAddTo).empty();
 
@@ -24,6 +24,7 @@ $(document).ready(function () {
     $(".housewife-button").removeClass("active");
     $(this).addClass("active");
 
+    // function to display gifs
     var type = $(this).attr("data-type");
     var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + type + "&api_key=dc6zaTOxFJmzC&limit=5";
 
@@ -32,9 +33,12 @@ $(document).ready(function () {
       method: "GET"
     })
       .then(function (response) {
-        var results = response.data;
+        console.log(response);
 
+        var results = response.data;
+        // for loop goes through each gif and adds these variables
         for (var i = 0; i < results.length; i++) {
+          // creates a generic div to hold the results
           var housewifeDiv = $("<div class=\"housewife-item\">");
 
           var rating = results[i].rating;
@@ -81,10 +85,11 @@ $(document).ready(function () {
     event.preventDefault();
     var newhousewife = $("input").eq(0).val();
 
-    // HERE is where you add the code for adding an additional gifs without deteling the previous ones.
+    // HERE is where you add the code for adding an additional gifs without deleting the previous ones.
 
     if (newhousewife.length > 2) {
       housewives.push(newhousewife);
+      
     }
 
     populateButtons(housewives, "housewife-button", "#housewife-buttons");
